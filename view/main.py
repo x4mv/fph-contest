@@ -1,32 +1,36 @@
 import sys
 import random
-from PySide6 import QtCore, QtWidgets, QtGui
+from PySide6.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget
 
-class MyWidget(QtWidgets.QWidget):
+class TablaDemo(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.hello = ["Hallo Welt", "Hei maailma", "Hola Mundo", "Привет мир"]
+        self.setWindowTitle("FPH CONTEST WORKFLOW")
+        self.setGeometry(200, 200, 800, 600)
 
-        self.button = QtWidgets.QPushButton("Click me!")
-        self.text = QtWidgets.QLabel("Hello World",
-                                     alignment=QtCore.Qt.AlignCenter)
+        layout = QVBoxLayout()
 
-        self.layout = QtWidgets.QVBoxLayout(self)
-        self.layout.addWidget(self.text)
-        self.layout.addWidget(self.button)
+        # Crear la tabla con 3 filas y 2 columnas
+        self.tabla = QTableWidget(6, 5)
 
-        self.button.clicked.connect(self.magic)
+        # Agregar encabezados
+        self.tabla.setHorizontalHeaderLabels(["Nro","Nombre", "Categoria", "Nacimiento", "Equipo"])
 
-    @QtCore.Slot()
-    def magic(self):
-        self.text.setText(random.choice(self.hello))
+        # Insertar datos
+        self.tabla.setItem(0, 0, QTableWidgetItem("1"))
+        self.tabla.setItem(0, 1, QTableWidgetItem("Sergio"))
+        self.tabla.setItem(0, 2, QTableWidgetItem("77"))
+        self.tabla.setItem(0, 3, QTableWidgetItem("2003"))
+        self.tabla.setItem(0, 4, QTableWidgetItem("FPH"))
+
+
+        layout.addWidget(self.tabla)
+        self.setLayout(layout)
+        
 
 if __name__ == "__main__":
-    app = QtWidgets.QApplication([])
-
-    widget = MyWidget()
-    widget.resize(800, 600)
-    widget.show()
-
-    sys.exit(app.exec())
+    app = QApplication([])
+    ventana = TablaDemo()
+    ventana.show()
+    app.exec()
