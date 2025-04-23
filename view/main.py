@@ -1,12 +1,12 @@
 import sys
 import random
-from PySide6.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget, QMainWindow, QLabel
 
 class TablaDemo(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("FPH CONTEST WORKFLOW")
+        self.setWindowTitle("LEADERBOARD")
         self.setGeometry(200, 200, 800, 600)
 
         layout = QVBoxLayout()
@@ -28,9 +28,19 @@ class TablaDemo(QWidget):
         layout.addWidget(self.tabla)
         self.setLayout(layout)
         
+class VentanaPrincipal(QMainWindow): 
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("FPH CONTEST WORKFLOW")
+        self.setGeometry(100,100,1280,960)
+
+        label = QLabel("Hello from main window", self)
+
 
 if __name__ == "__main__":
     app = QApplication([])
-    ventana = TablaDemo()
+    ventana = VentanaPrincipal()
+    #ventana = TablaDemo()
     ventana.show()
     app.exec()
